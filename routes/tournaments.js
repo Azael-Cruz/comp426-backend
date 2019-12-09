@@ -69,6 +69,12 @@ const tournamentArray =[
     }
 ];
 
+// Arrays that can manipulate the greater data structures for
+// both the info and tournament data sets.
+const tournamentShortInfoArray = shortTournamentInformation;
+const tournamentsArray = tournaments;
+
+
 // Get all of the tournaments
 router.get('/', function(req, res){
     res.send(tournamentArray);

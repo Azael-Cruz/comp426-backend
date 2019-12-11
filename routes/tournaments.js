@@ -6,6 +6,156 @@ const Joi = require('@hapi/joi');
 
 router.use(express.json());
 
+const shortTournamentInformation = [
+    {
+        tournament: "1",
+        tournamentName: "UNC",
+        tournamentHost: "John",
+        tournamentStart: "12/12/12",
+        tournamentEnd: "12/12/12",
+        tournamentStartTime: "1:00",
+        tournamentEndTime: "3:00",
+        tournamentState: "NC",
+        tournamentCity: "Chapel Hill",
+        tournamentAddress: "901 Street",
+        tournamentDescription: "Have fun",
+        tournamentId: 99,
+    },
+    {
+        tournament: "1",
+        tournamentName: "UNC",
+        tournamentHost: "John",
+        tournamentStart: "12/12/12",
+        tournamentEnd: "12/12/12",
+        tournamentStartTime: "1:00",
+        tournamentEndTime: "3:00",
+        tournamentState: "NC",
+        tournamentCity: "Chapel Hill",
+        tournamentAddress: "901 Street",
+        tournamentDescription: "Have fun",
+        tournamentId: 9,
+    },
+    {
+        tournament: "1",
+        tournamentName: "UNC",
+        tournamentHost: "John",
+        tournamentStart: "12/12/12",
+        tournamentEnd: "12/12/12",
+        tournamentStartTime: "1:00",
+        tournamentEndTime: "3:00",
+        tournamentState: "NC",
+        tournamentCity: "Chapel Hill",
+        tournamentAddress: "901 Street",
+        tournamentDescription: "Have fun",
+        tournamentId: 88,
+    },
+    {
+        tournament: "1",
+        tournamentName: "UNC",
+        tournamentHost: "John",
+        tournamentStart: "12/12/12",
+        tournamentEnd: "12/12/12",
+        tournamentStartTime: "1:00",
+        tournamentEndTime: "3:00",
+        tournamentState: "NC",
+        tournamentCity: "Chapel Hill",
+        tournamentAddress: "901 Street",
+        tournamentDescription: "Have fun",
+        tournamentId: 8,
+    },
+    {
+        tournament: "1",
+        tournamentName: "UNC",
+        tournamentHost: "John",
+        tournamentStart: "12/12/12",
+        tournamentEnd: "12/12/12",
+        tournamentStartTime: "1:00",
+        tournamentEndTime: "3:00",
+        tournamentState: "NC",
+        tournamentCity: "Chapel Hill",
+        tournamentAddress: "901 Street",
+        tournamentDescription: "Have fun",
+        tournamentId: 77,
+    },
+]
+
+const tournaments = [
+    {
+        tournament: 1,
+        tournamentCreator: "John",
+        tournamentInfo: Object,
+        tournamentTeams: ["UNC", "STATE", "DUKE"],
+        tournamentStructure: Object,
+        tournamentFormType: 1,
+        tournamentPool: true,
+        tournamentBracket: true,
+        tournamentReferees: ["GRACE", "ALEX", "JOSH"],
+        tournamentSnitches: ["MARK", "JESS", "JAMES"],
+        tournamentMatches: ["UNC VS STATE", "STATE VS DUKE", "DUKE VS UNC"],
+        tournamentSchedule: Object,
+        tournamentId: 99,
+    },
+    {
+        tournament: 1,
+        tournamentCreator: "John",
+        tournamentInfo: Object,
+        tournamentTeams: ["UNC", "STATE", "DUKE"],
+        tournamentStructure: Object,
+        tournamentFormType: 1,
+        tournamentPool: true,
+        tournamentBracket: true,
+        tournamentReferees: ["GRACE", "ALEX", "JOSH"],
+        tournamentSnitches: ["MARK", "JESS", "JAMES"],
+        tournamentMatches: ["UNC VS STATE", "STATE VS DUKE", "DUKE VS UNC"],
+        tournamentSchedule: Object,
+        tournamentId: 9,
+    },
+    {
+        tournament: 1,
+        tournamentCreator: "John",
+        tournamentInfo: Object,
+        tournamentTeams: ["UNC", "STATE", "DUKE"],
+        tournamentStructure: Object,
+        tournamentFormType: 1,
+        tournamentPool: true,
+        tournamentBracket: true,
+        tournamentReferees: ["GRACE", "ALEX", "JOSH"],
+        tournamentSnitches: ["MARK", "JESS", "JAMES"],
+        tournamentMatches: ["UNC VS STATE", "STATE VS DUKE", "DUKE VS UNC"],
+        tournamentSchedule: Object,
+        tournamentId: 88,
+    },
+    {
+        tournament: 1,
+        tournamentCreator: "John",
+        tournamentInfo: Object,
+        tournamentTeams: ["UNC", "STATE", "DUKE"],
+        tournamentStructure: Object,
+        tournamentFormType: 1,
+        tournamentPool: true,
+        tournamentBracket: true,
+        tournamentReferees: ["GRACE", "ALEX", "JOSH"],
+        tournamentSnitches: ["MARK", "JESS", "JAMES"],
+        tournamentMatches: ["UNC VS STATE", "STATE VS DUKE", "DUKE VS UNC"],
+        tournamentSchedule: Object,
+        tournamentId: 8,
+    },
+    {
+        tournament: 1,
+        tournamentCreator: "John",
+        tournamentInfo: Object,
+        tournamentTeams: ["UNC", "STATE", "DUKE"],
+        tournamentStructure: Object,
+        tournamentFormType: 1,
+        tournamentPool: true,
+        tournamentBracket: true,
+        tournamentReferees: ["GRACE", "ALEX", "JOSH"],
+        tournamentSnitches: ["MARK", "JESS", "JAMES"],
+        tournamentMatches: ["UNC VS STATE", "STATE VS DUKE", "DUKE VS UNC"],
+        tournamentSchedule: Object,
+        tournamentId: 77,
+    },
+]
 
 // Arrays that can manipulate the greater data structures for
 // both the info and tournament data sets.
@@ -39,8 +189,8 @@ router.get('/stub/:id', function(req, res){
 
 // Add a full tournament to the tournamentsArray and a stub to the tournamentShortInfoArray
 router.post('/', function(req, res){
-    if(tournamentValidator(req.body) == -1) return res.status(400).send("Tournament object is missing one or more required fields. Please try again with populated fields.");
-
+    if(!req.body == -1) return res.status(400).send("Tournament object is missing one or more required fields. Please try again with populated fields.");
+    console.log(req.body);
     const tournament = {
         tournamentCreator: req.body.name,
         tournamentInfo: req.body.information,
@@ -55,7 +205,8 @@ router.post('/', function(req, res){
         tournamentSchedule: req.body.schedule,
         tournamentId: req.body.id,
     };
-
+    console.log(tournament);
+/*
     const tournamentStub = {
         tournamentName: tournament.tournamentInfo.name,
         tournamentHost: tournament.tournamentInfo.host,
@@ -69,10 +220,11 @@ router.post('/', function(req, res){
         tournamentDescription: tournament.tournamentInfo.description,
         tournamentId: tournament.tournamentId,
     }
-
+*/
     tournamentsArray.push(tournament);
-    tournamentShortInfoArray.push(tournamentStub);
-    res.send({tournament, tournamentStub}); 
+ //   tournamentShortInfoArray.push(tournamentStub);
+    console.log(tournamentsArray);
+    res.send(tournament); 
 });
 
 // Add information to a specific tournament
@@ -125,7 +277,7 @@ router.put('/update/:id', function(req, res){
     tournament[key] = content;
     res.send(tournament);
 });
-
+/*
 function tournamentValidator(tournament){
     const schema1 = {
         name: Joi.string().require(),
@@ -150,7 +302,7 @@ function tournamentValidator(tournament){
     }
  
 }
-
+*/
 /*const tournamentArray =[
     {
         tName: "UNC Fights",

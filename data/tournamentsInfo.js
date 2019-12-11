@@ -12,5 +12,9 @@ const shortTournamentInformation = [
         tournamentAddress: " ",
         tournamentDescription: " ",
         tournamentId: null,
+    },
+    {
+        name: String,
+        id: 0,
     }
 ]
